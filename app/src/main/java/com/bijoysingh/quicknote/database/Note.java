@@ -17,6 +17,7 @@ import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.service.FloatingNoteService;
+import com.bijoysingh.quicknote.sync.NoteSyncProvider;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.util.DateFormatter;
@@ -298,6 +299,7 @@ public class Note {
 
   public void saveToSync() {
     // Notify change to online/offline sync
+    NoteSyncProvider.get().save(this);
   }
 
   public void deleteOrMoveToTrash(Context context) {
@@ -325,6 +327,7 @@ public class Note {
 
   public void deleteToSync() {
     // Notify change to online/offline sync
+    NoteSyncProvider.get().delete(this);
   }
 
   public boolean isEqual(Note note) {
